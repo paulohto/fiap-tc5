@@ -17,16 +17,18 @@ public class ProductDTO {
     private Double price;
     private String description;
     private String imageUri;
+    private Integer amount;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(UUID id_product, String name, Double price, String description, String imageUri) {
+    public ProductDTO(UUID id_product, String name, Double price, String description, String imageUri, Integer amount) {
         this.id_product = id_product;
         this.name = name;
         this.price = price;
         this.description = description;
         this.imageUri = imageUri;
+        this.amount = amount;
     }
 
     public ProductDTO(Product entity) {
@@ -35,5 +37,6 @@ public class ProductDTO {
         price = entity.getPrice();
         description = entity.getDescription();
         imageUri = entity.getImageuri();
+        amount = entity.getAmount();
     }
 }
