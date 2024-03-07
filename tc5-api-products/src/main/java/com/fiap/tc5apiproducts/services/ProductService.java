@@ -82,6 +82,5 @@ public class ProductService {
         product.setDescription(dto.getDescription());
         product.setPrice(dto.getPrice());
         product.setImageuri(dto.getImageUri());
-        product.setAmount(dto.getAmount());
     }
 }

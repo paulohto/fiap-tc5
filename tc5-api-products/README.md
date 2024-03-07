@@ -4,7 +4,7 @@ API desenvolvida para gestão de itens, controle, cadastro e manutenção de pre
 
 ## Workflow
 
-![modelo-dominio](modelo-conceitual.png)
+![modelo-realcional](src/main/resources/modelo-relacional.png)
 
 ## Como rodar esta aplicação springboot
 
