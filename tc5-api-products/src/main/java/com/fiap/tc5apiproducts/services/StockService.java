@@ -51,8 +51,8 @@ public class StockService {
         Optional<Product> obj = productRepository.findById(uuid);
         Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
         Input input = inputStock(product, dto);
-        product = productRepository.save(product);
         inputRepository.save(input);
+        product = productRepository.save(product);
 
         return copyEntityToStockDto(product);
     }
@@ -61,8 +61,8 @@ public class StockService {
         Optional<Product> obj = productRepository.findById(uuid);
         Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
         Output output = outputStock(product, dto);
-        product = productRepository.save(product);
         outputRepository.save(output);
+        product = productRepository.save(product);
 
         return copyEntityToStockDto(product);
     }
@@ -106,6 +106,15 @@ public class StockService {
         stockDTO.setPrice(product.getPrice());
         stockDTO.setDescription(product.getDescription());
         stockDTO.setImageUri(product.getImageuri());
+
+        int input = product.getInputs().stream()
+                .mapToInt(Input::getAmount)
+                .sum();
+        int output = product.getOutputs().stream()
+                .mapToInt(Output::getAmount)
+                .sum();
+        stockDTO.setAmount_stock(input - output);
+
         stockDTO.setInputs(product.getInputs().stream().map(InputDTO::new).collect(Collectors.toList()));
         stockDTO.setOutputs(product.getOutputs().stream().map(OutputDTO::new).collect(Collectors.toList()));
 
