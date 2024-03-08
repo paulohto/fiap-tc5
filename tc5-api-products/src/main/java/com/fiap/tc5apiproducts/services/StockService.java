@@ -47,9 +47,9 @@ public class StockService {
         return list.map(StockDTO::new);
     }
     @Transactional
-    public StockDTO insertInput(UUID uuid, StockInputDTO dto){
-        Optional<Product> obj = productRepository.findById(uuid);
-        Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
+    public StockDTO insertInput(StockInputDTO dto){
+        Optional<Product> obj = productRepository.findById(dto.getId_product());
+        Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + dto.getId_product()));
         Input input = inputStock(product, dto);
         inputRepository.save(input);
         product = productRepository.save(product);
@@ -57,29 +57,15 @@ public class StockService {
         return copyEntityToStockDto(product);
     }
     @Transactional
-    public StockDTO insertOutput(UUID uuid, StockOutputDTO dto){
-        Optional<Product> obj = productRepository.findById(uuid);
-        Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
+    public StockDTO insertOutput(StockOutputDTO dto){
+        Optional<Product> obj = productRepository.findById(dto.getId_product());
+        Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + dto.getId_product()));
         Output output = outputStock(product, dto);
         outputRepository.save(output);
         product = productRepository.save(product);
 
         return copyEntityToStockDto(product);
     }
-//    @Transactional
-//    public ProductDTO insert(ProductDTO dto){
-//        Product product = new Product();
-//        copyDtoToEntity(dto, product);
-//        product = productRepository.save(product);
-//        return new ProductDTO(product);
-//    }
-//    @Transactional
-//    public ProductDTO update(UUID uuid, StockInputDTO dto){
-//        Optional<Product> obj = productRepository.findById(uuid);
-//        Product product = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
-//        outputStock(product);
-//        return new ProductDTO(product);
-//    }
     private Input inputStock(Product product, StockInputDTO inputDTO){
         Input input = new Input();
         input.setDate_input(Timestamp.from(Instant.now()));
