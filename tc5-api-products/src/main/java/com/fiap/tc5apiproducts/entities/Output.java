@@ -16,6 +16,7 @@ public class Output {
     private UUID id_output;
 
     @ManyToOne
+    @JoinColumn(name = "id_product")
     private Product product;
 
     private Double price;

@@ -1,8 +1,8 @@
 package com.fiap.tc5apiproducts.controllers;
 
-import com.fiap.tc5apiproducts.dto.ProductDTO;
 import com.fiap.tc5apiproducts.dto.StockDTO;
 import com.fiap.tc5apiproducts.dto.StockInputDTO;
+import com.fiap.tc5apiproducts.dto.StockOutputDTO;
 import com.fiap.tc5apiproducts.services.ProductService;
 import com.fiap.tc5apiproducts.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,32 +37,18 @@ public class StockController {
     }
 
     @PostMapping(value = "/{uuid}/input")
-    public ResponseEntity<StockDTO> insert(@PathVariable UUID uuid, @RequestBody StockInputDTO dto){
+    public ResponseEntity<StockDTO> input(@PathVariable UUID uuid, @RequestBody StockInputDTO dto){
 
-        StockDTO stockDTO = stockService.insert(uuid, dto);
+        StockDTO stockDTO = stockService.insertInput(uuid, dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(uuid).toUri();
         return ResponseEntity.created(uri).body(stockDTO);
     }
 
     @PostMapping(value = "/{uuid}/output")
-    public ResponseEntity<ProductDTO> insert(@PathVariable UUID uuid, @RequestBody ProductDTO dto){
+    public ResponseEntity<StockDTO> output(@PathVariable UUID uuid, @RequestBody StockOutputDTO dto){
 
-        dto = productService.insert(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId_product()).toUri();
-        return ResponseEntity.created(uri).body(dto);
-    }
-
-    @PutMapping(value = "/{uuid}")
-    public ResponseEntity<ProductDTO> update(@PathVariable UUID uuid, @RequestBody ProductDTO dto){
-
-        dto = productService.update(uuid, dto);
-        return ResponseEntity.ok().body(dto);
-    }
-
-    @DeleteMapping(value = "/{uuid}")
-    public ResponseEntity<Void> update(@PathVariable UUID uuid){
-
-        productService.delete(uuid);
-        return ResponseEntity.noContent().build();
+        StockDTO stockDTO = stockService.insertOutput(uuid, dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(uuid).toUri();
+        return ResponseEntity.created(uri).body(stockDTO);
     }
 }

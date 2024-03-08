@@ -1,15 +1,11 @@
 package com.fiap.tc5apiproducts.dto;
 
 import com.fiap.tc5apiproducts.entities.Output;
-import lombok.Builder;
 import lombok.Data;
-import lombok.extern.jackson.Jacksonized;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Jacksonized
-@Builder
 @Data
 public class OutputDTO {
 

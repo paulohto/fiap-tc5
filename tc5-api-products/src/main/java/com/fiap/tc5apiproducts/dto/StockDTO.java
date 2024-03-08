@@ -1,17 +1,13 @@
 package com.fiap.tc5apiproducts.dto;
 
 import com.fiap.tc5apiproducts.entities.Product;
-import lombok.Builder;
 import lombok.Data;
-import lombok.extern.jackson.Jacksonized;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Jacksonized
-@Builder
 @Data
 public class StockDTO {
 
@@ -42,6 +38,7 @@ public class StockDTO {
         price = entity.getPrice();
         description = entity.getDescription();
         imageUri = entity.getImageuri();
+
         inputs = entity.getInputs().stream().map(InputDTO::new).collect(Collectors.toList());
         outputs = entity.getOutputs().stream().map(OutputDTO::new).collect(Collectors.toList());
     }
