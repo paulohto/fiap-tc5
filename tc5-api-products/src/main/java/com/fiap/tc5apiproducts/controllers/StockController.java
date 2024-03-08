@@ -36,19 +36,19 @@ public class StockController {
         return ResponseEntity.ok().body(dto);
     }
 
-    @PostMapping(value = "/{uuid}/input")
-    public ResponseEntity<StockDTO> input(@PathVariable UUID uuid, @RequestBody StockInputDTO dto){
+    @PostMapping(value = "/input")
+    public ResponseEntity<StockDTO> input(@RequestBody StockInputDTO dto){
 
-        StockDTO stockDTO = stockService.insertInput(uuid, dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(uuid).toUri();
+        StockDTO stockDTO = stockService.insertInput(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(dto.getId_product()).toUri();
         return ResponseEntity.created(uri).body(stockDTO);
     }
 
-    @PostMapping(value = "/{uuid}/output")
-    public ResponseEntity<StockDTO> output(@PathVariable UUID uuid, @RequestBody StockOutputDTO dto){
+    @PostMapping(value = "/output")
+    public ResponseEntity<StockDTO> output(@RequestBody StockOutputDTO dto){
 
-        StockDTO stockDTO = stockService.insertOutput(uuid, dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(uuid).toUri();
+        StockDTO stockDTO = stockService.insertOutput(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(dto.getId_product()).toUri();
         return ResponseEntity.created(uri).body(stockDTO);
     }
 }

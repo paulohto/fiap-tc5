@@ -1,5 +1,7 @@
 package com.fiap.tc5apiproducts.dto;
 
+import com.fiap.tc5apiproducts.entities.Input;
+import com.fiap.tc5apiproducts.entities.Output;
 import com.fiap.tc5apiproducts.entities.Product;
 import lombok.Data;
 
@@ -38,6 +40,14 @@ public class StockDTO {
         price = entity.getPrice();
         description = entity.getDescription();
         imageUri = entity.getImageuri();
+
+        int input = entity.getInputs().stream()
+                .mapToInt(Input::getAmount)
+                .sum();
+        int output = entity.getOutputs().stream()
+                .mapToInt(Output::getAmount)
+                .sum();
+        amount_stock = (input - output);
 
         inputs = entity.getInputs().stream().map(InputDTO::new).collect(Collectors.toList());
         outputs = entity.getOutputs().stream().map(OutputDTO::new).collect(Collectors.toList());
