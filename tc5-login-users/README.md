@@ -1,6 +1,6 @@
-# tc5-api-products
+# tc5-login-users
 
-API desenvolvida para gestão de itens, controle, cadastro e manutenção de preço.
+API desenvolvida para gestão de login e usuarios.
 
 ## Workflow
 
@@ -12,14 +12,14 @@ API desenvolvida para gestão de itens, controle, cadastro e manutenção de pre
 
 ```
 docker network create redelocal --driver=bridge
-docker run --name products -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_products_db --network redelocal -p 5432:5433 -d postgres
+docker run --name login-users -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_login_users_db --network redelocal -p 5432:5432 -d postgres
 ```
 
 2° - Insira essas variáveis de ambiente na aplicação, basta copiar e colar:
 
 ```
 SPRING_SERVER_PORT=8080
-SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_products_db
+SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_login_users_db
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
 ```
@@ -32,7 +32,7 @@ Grupo 21
 
 ## Repositório
 
-- [tc5-api-products](https://github.com/JoneyPereira/fiap-tc5)
+- [tc5-api-products](https://github.com/paulohto/login-users-tc5)
 
 ## Commits Guideline
 
