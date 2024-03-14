@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  postgres-1:
+    image: postgres:latest
+    container_name: login-users
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: api_login_users_db
+    ports:
+      - "5432:5432"
+    networks:
+      - redelocal
+      
+  postgres-2:
+    image: postgres:latest
+    container_name: products
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: api_products_db
+    ports:
+      - "5432:5433"
+    networks:
+      - redelocal 
+
+networks:
+  redelocal:
+
+volumes:
+  postgres-data:
