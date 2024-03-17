@@ -18,9 +18,6 @@ import java.util.stream.Collectors;
 public class OrderDTO {
 
     private UUID id_order;
-    private String address;
-    private Double latitude;
-    private Double longitude;
     private Instant moment;
     private OrderStatus status;
 
@@ -29,20 +26,14 @@ public class OrderDTO {
 
     public OrderDTO() {
     }
-    public OrderDTO(UUID id_order, String address, Double latitude, Double longitude, Instant moment, OrderStatus status, List<ProductDTO> products) {
+    public OrderDTO(UUID id_order, Instant moment, OrderStatus status, List<ProductDTO> products) {
         this.id_order = id_order;
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.moment = moment;
         this.status = status;
         this.products = products;
     }
     public OrderDTO(Order entity) {
         id_order = entity.getId_order();
-        address = entity.getAddress();
-        latitude = entity.getLatitude();
-        longitude = entity.getLatitude();
         moment = entity.getMoment();
         status = entity.getStatus();
         products = entity.getProducts().stream()

@@ -1,14 +1,13 @@
 package com.fiap.tc5apicarts.entities;
 
+import com.fiap.tc5apicarts.dto.ProductDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -21,23 +20,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id_order;
 
-    private String address;
-    private Double latitude;
-    private Double longitude;
+    private Long id_client;
+    private UUID uuid_product;
     private Instant moment;
     private OrderStatus status;
 
-    @ManyToMany
-    @JoinTable(name = "tb_order_product",
-    joinColumns = @JoinColumn(name = "id_order"),
-    inverseJoinColumns = @JoinColumn(name = "id_product"))
-    private Set<Product> products = new HashSet<>();
+    private List<ProductDTO> products = new ArrayList<>();
 
-    public Order(UUID id_order, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
+
+    public Order(UUID id_order, Instant moment, OrderStatus status) {
         this.id_order = id_order;
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.moment = moment;
         this.status = status;
     }
