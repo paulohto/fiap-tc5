@@ -28,17 +28,6 @@ public class CartService {
     @Autowired
     private CartFeignClient cartFeignClient;
 
-    @Transactional(readOnly = true)
-    public List<OrderDTO> findAll() {
-        List<Order> listOrders = orderRepository.findOrdersWithProducts();
-        return listOrders.stream().map(OrderDTO::new).collect(Collectors.toList());
-    }
-    @Transactional(readOnly = true)
-    public OrderDTO findById(UUID uuid){
-        Optional<Order> obj = orderRepository.findById(uuid);
-        Order order = obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid));
-        return new OrderDTO(order);
-    }
     @Transactional
     public OrderDTO insert(OrderDTO dto) {
         Order order = new Order(null,

@@ -26,17 +26,15 @@ public class OrderDTO {
 
     public OrderDTO() {
     }
-    public OrderDTO(UUID id_order, Instant moment, OrderStatus status, List<ProductDTO> products) {
+    public OrderDTO(UUID id_order, Instant moment, OrderStatus status) {
         this.id_order = id_order;
         this.moment = moment;
         this.status = status;
-        this.products = products;
     }
     public OrderDTO(Order entity) {
         id_order = entity.getId_order();
         moment = entity.getMoment();
         status = entity.getStatus();
-        products = entity.getProducts().stream()
-                .map(ProductDTO::new).collect(Collectors.toList());
+        products = entity.getProducts();
     }
 }

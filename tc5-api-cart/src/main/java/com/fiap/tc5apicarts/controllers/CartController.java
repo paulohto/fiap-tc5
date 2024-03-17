@@ -16,28 +16,12 @@ import java.util.UUID;
 public class CartController {
     @Autowired
     private OrderService orderService;
-    @GetMapping
-    public ResponseEntity<List<OrderDTO>> findAll(){
-        List<OrderDTO> listOrders = orderService.findAll();
-        return ResponseEntity.ok().body(listOrders);
-    }
-    @GetMapping(value = "/{uuid}")
-    public ResponseEntity<OrderDTO> findById(@PathVariable UUID uuid){
 
-        OrderDTO dto = orderService.findById(uuid);
-        return ResponseEntity.ok().body(dto);
-    }
     @PostMapping
     public ResponseEntity<OrderDTO> insert(@RequestBody OrderDTO dto) {
         dto = orderService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}")
                 .buildAndExpand(dto.getId_order()).toUri();
         return ResponseEntity.created(uri).body(dto);
-    }
-    @PutMapping(value = "/{uuid}/paid")
-    public ResponseEntity<OrderDTO> setPaid(@PathVariable UUID uuid){
-
-        OrderDTO dto = orderService.setPaid(uuid);
-        return ResponseEntity.ok().body(dto);
     }
 }
