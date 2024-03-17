@@ -4,7 +4,7 @@ spring:
       matching-strategy: ant_path_matcher
 
   application:
-    name: tc5-api-products
+    name: tc5-api-cart
 
   data:
     web:
@@ -26,7 +26,3 @@ spring:
 
 server:
   port: ${SPRING_SERVER_PORT}
-
-app-config:
-  secrets:
-    api-secret: ${SPRING_JWT_SECRET:'batman batman batman'}

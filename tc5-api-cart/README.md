@@ -1,6 +1,6 @@
-# tc5-api-products
+# tc5-api-cart
 
-API desenvolvida para gestão de itens, controle, cadastro e manutenção de preço.
+API desenvolvida para gestão do carrinho de compras.
 
 ## Workflow
 
@@ -12,28 +12,27 @@ API desenvolvida para gestão de itens, controle, cadastro e manutenção de pre
 
 ```
 docker network create redelocal --driver=bridge
-docker run --name products -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_products_db --network redelocal -p 5432:5433 -d postgres
+docker run --name carts -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_cart_db --network redelocal -p 5432:5433 -d postgres
 ```
 
 2° - Insira essas variáveis de ambiente na aplicação, basta copiar e colar:
 
 ```
-SPRING_SERVER_PORT=8080
-SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_products_db
+SPRING_SERVER_PORT=8082
+SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_cart_db
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
-SPRING_JWT_SECRET=batman batman batman
 ```
 
 > **_NOTA:_**  Ao rodar a aplicação, para acessar o swagger da api basta acessar a seguinte url a depender da porta escolhida
-> na variável SERVER_PORT. Ex: http://localhost:8080/swagger-ui/index.html#/
+> na variável SERVER_PORT. Ex: http://localhost:8082/swagger-ui/index.html#/
 
 ## Squad
 Grupo 21
 
 ## Repositório
 
-- [tc5-api-products](https://github.com/JoneyPereira/fiap-tc5)
+- [tc5-api-cart](https://github.com/JoneyPereira/fiap-tc5)
 
 ## Commits Guideline
 
