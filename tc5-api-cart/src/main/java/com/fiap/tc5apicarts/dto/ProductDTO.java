@@ -30,12 +30,4 @@ public class ProductDTO {
         this.description = description;
         this.imageUri = imageUri;
     }
-
-    public ProductDTO(Product entity) {
-        id_product = entity.getId_product();
-        name = entity.getName();
-        price = entity.getPrice();
-        description = entity.getDescription();
-        imageUri = entity.getImageuri();
-    }
 }

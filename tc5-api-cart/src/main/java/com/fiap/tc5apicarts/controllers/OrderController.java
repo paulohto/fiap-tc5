@@ -34,12 +34,6 @@ public class OrderController {
                 .buildAndExpand(dto.getId_order()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
-    @PutMapping(value = "/{uuid}/delivered")
-    public ResponseEntity<OrderDTO> setDelivered(@PathVariable UUID uuid){
-
-        OrderDTO dto = orderService.setDelivered(uuid);
-        return ResponseEntity.ok().body(dto);
-    }
     @PutMapping(value = "/{uuid}/paid")
     public ResponseEntity<OrderDTO> setPaid(@PathVariable UUID uuid){
 

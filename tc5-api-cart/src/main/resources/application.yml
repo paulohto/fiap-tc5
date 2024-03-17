@@ -26,3 +26,9 @@ spring:
 
 server:
   port: ${SPRING_SERVER_PORT}
+
+app-config:
+  services:
+    cart: ${SPRING_URL_CART}
+  secrets:
+    api-secret: ${SPRING_JWT_SECRET:'batman batman batman'}

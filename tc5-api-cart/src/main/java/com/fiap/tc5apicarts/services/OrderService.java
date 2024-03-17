@@ -1,6 +1,7 @@
 package com.fiap.tc5apicarts.services;
 
 
+import com.fiap.tc5apicarts.client.CartFeignClient;
 import com.fiap.tc5apicarts.dto.OrderDTO;
 import com.fiap.tc5apicarts.dto.ProductDTO;
 import com.fiap.tc5apicarts.entities.Order;
@@ -25,7 +26,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    private CartFeignClient cartFeignClient;
 
     @Transactional(readOnly = true)
     public List<OrderDTO> findAll() {
@@ -48,18 +49,6 @@ public class OrderService {
         }
         order = orderRepository.save(order);
         return new OrderDTO(order);
-    }
-    @Transactional
-    public OrderDTO setDelivered(UUID uuid){
-        try {
-            Order order = orderRepository.getReferenceById(uuid);
-            order.setStatus(OrderStatus.DELIVERED);
-            order = orderRepository.save(order);
-            return new OrderDTO(order);
-        }
-        catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException("Objeto não encontrado, uuid: " + uuid);
-        }
     }
     @Transactional
     public OrderDTO setPaid(UUID uuid){

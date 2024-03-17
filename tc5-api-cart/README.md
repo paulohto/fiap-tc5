@@ -22,6 +22,8 @@ SPRING_SERVER_PORT=8082
 SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_cart_db
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
+SPRING_JWT_SECRET=batman batman batman
+SPRING_URL_CART=http://localhost:8082
 ```
 
 > **_NOTA:_**  Ao rodar a aplicação, para acessar o swagger da api basta acessar a seguinte url a depender da porta escolhida
