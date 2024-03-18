@@ -4,7 +4,7 @@ API desenvolvida para gestão do carrinho de compras.
 
 ## Workflow
 
-![modelo-realcional](src/main/resources/modelo-relacional.png)
+![modelo-relacional](src/main/resources/modelo-relacional.png)
 
 ## Como rodar esta aplicação springboot
 
@@ -12,18 +12,18 @@ API desenvolvida para gestão do carrinho de compras.
 
 ```
 docker network create redelocal --driver=bridge
-docker run --name carts -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_cart_db --network redelocal -p 5432:5433 -d postgres
+docker run --name carts -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_carts_db --network redelocal -p 5434:5432 -d postgres
 ```
 
 2° - Insira essas variáveis de ambiente na aplicação, basta copiar e colar:
 
 ```
 SPRING_SERVER_PORT=8082
-SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_cart_db
+SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5434/api_carts_db
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
 SPRING_JWT_SECRET=batman batman batman
-SPRING_URL_CART=http://localhost:8082
+SPRING_URL_PRODUCT=http://localhost:8081
 ```
 
 > **_NOTA:_**  Ao rodar a aplicação, para acessar o swagger da api basta acessar a seguinte url a depender da porta escolhida

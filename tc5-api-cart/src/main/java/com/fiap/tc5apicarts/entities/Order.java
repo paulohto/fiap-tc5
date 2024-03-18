@@ -26,7 +26,7 @@ public class Order {
     private Instant moment;
     private OrderStatus status;
 
-    private Set<Product> products = new HashSet<>();
+    private Set<ProductDTO> products = new HashSet<>();
 
 
     public Order(UUID id_order, Instant moment, OrderStatus status) {

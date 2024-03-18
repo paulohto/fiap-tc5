@@ -12,14 +12,14 @@ API desenvolvida para gestão de itens, controle, cadastro e manutenção de pre
 
 ```
 docker network create redelocal --driver=bridge
-docker run --name products -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_products_db --network redelocal -p 5432:5433 -d postgres
+docker run --name products -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=api_products_db --network redelocal -p 5433:5432 -d postgres
 ```
 
 2° - Insira essas variáveis de ambiente na aplicação, basta copiar e colar:
 
 ```
-SPRING_SERVER_PORT=8080
-SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5432/api_products_db
+SPRING_SERVER_PORT=8081
+SPRING_DATA_SOURCE_URL=jdbc:postgresql://localhost:5433/api_products_db
 SPRING_DATA_SOURCE_USERNAME=admin
 SPRING_DATA_SOURCE_PASSWORD=admin
 SPRING_JWT_SECRET=batman batman batman

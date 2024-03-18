@@ -21,9 +21,6 @@ public class CartController {
 
     @PostMapping("/product/{uuid}")
     public ResponseEntity<CartDTO> insert(@PathVariable UUID uuid) {
-        dto = cartService.insert(uuid);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}")
-                .buildAndExpand(dto.getId_order()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.ok(cartService.insert(uuid));
     }
 }

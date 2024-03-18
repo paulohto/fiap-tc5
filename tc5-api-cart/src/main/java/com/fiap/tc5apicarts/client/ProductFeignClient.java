@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @FeignClient(
         name = "api-product",
-        url = "${app-config.services.cart}"
+        url = "${app-config.services.product}"
 )
 public interface ProductFeignClient {
 

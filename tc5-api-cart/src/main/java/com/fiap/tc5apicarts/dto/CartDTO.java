@@ -21,8 +21,8 @@ public class CartDTO {
 
     private Instant moment;
     private CartStatus status;
-    private Set<Product> products = new HashSet<>();
-    private Double total;
+    private Set<ProductDTO> products = new HashSet<>();
+    private Double total = 0.00;
 
 
     public CartDTO() {

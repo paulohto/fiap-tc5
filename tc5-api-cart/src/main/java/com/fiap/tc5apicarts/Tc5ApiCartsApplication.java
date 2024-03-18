@@ -14,10 +14,4 @@ public class Tc5ApiCartsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Tc5ApiCartsApplication.class, args);
 	}
-
-//	@Bean
-//	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
-//		return (factory) -> factory.addContextCustomizers(
-//				(context) -> context.setCookieProcessor(new LegacyCookieProcessor()));
-//	}
 }
