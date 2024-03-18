@@ -1,5 +1,6 @@
 package com.fiap.tc5apicarts.entities;
 
+import com.fiap.tc5apicarts.dto.ProductDTO;
 import jakarta.persistence.Entity;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ public class Cart {
 
     private Integer amount;
     private Double total;
-    private Set<Product> products = new HashSet<>();
+
+    private Set<ProductDTO> products = new HashSet<>();
 }

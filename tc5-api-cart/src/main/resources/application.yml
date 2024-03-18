@@ -29,6 +29,6 @@ server:
 
 app-config:
   services:
-    cart: ${SPRING_URL_CART}
+    cart: ${SPRING_URL_PRODUCT}
   secrets:
     api-secret: ${SPRING_JWT_SECRET:'batman batman batman'}
