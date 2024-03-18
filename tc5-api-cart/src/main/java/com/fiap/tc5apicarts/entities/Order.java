@@ -1,6 +1,7 @@
 package com.fiap.tc5apicarts.entities;
 
 import com.fiap.tc5apicarts.dto.ProductDTO;
+import com.fiap.tc5apicarts.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class Order {
     private Instant moment;
     private OrderStatus status;
 
-    private List<ProductDTO> products = new ArrayList<>();
+    private Set<Product> products = new HashSet<>();
 
 
     public Order(UUID id_order, Instant moment, OrderStatus status) {

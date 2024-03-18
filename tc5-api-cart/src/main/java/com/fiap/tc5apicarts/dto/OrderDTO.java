@@ -2,15 +2,13 @@ package com.fiap.tc5apicarts.dto;
 
 
 import com.fiap.tc5apicarts.entities.Order;
-import com.fiap.tc5apicarts.entities.OrderStatus;
+import com.fiap.tc5apicarts.entities.Product;
+import com.fiap.tc5apicarts.entities.enums.OrderStatus;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Jacksonized
 @Builder
@@ -20,9 +18,7 @@ public class OrderDTO {
     private UUID id_order;
     private Instant moment;
     private OrderStatus status;
-
-    private List<ProductDTO> products = new ArrayList<>();
-
+    private Set<Product> products = new HashSet<>();
 
     public OrderDTO() {
     }

@@ -2,7 +2,10 @@ package com.fiap.tc5apicarts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 
 @EnableFeignClients
 @SpringBootApplication
@@ -12,4 +15,9 @@ public class Tc5ApiCartsApplication {
 		SpringApplication.run(Tc5ApiCartsApplication.class, args);
 	}
 
+//	@Bean
+//	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
+//		return (factory) -> factory.addContextCustomizers(
+//				(context) -> context.setCookieProcessor(new LegacyCookieProcessor()));
+//	}
 }

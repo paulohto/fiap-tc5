@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.UUID;
 
 @FeignClient(
-        name = "api-cart",
+        name = "api-product",
         url = "${app-config.services.cart}"
 )
-public interface CartFeignClient{
+public interface ProductFeignClient {
 
     @GetMapping("/stock/{uuid}")
     ResponseEntity<ProductDTO> findByUuid(@PathVariable UUID uuid);

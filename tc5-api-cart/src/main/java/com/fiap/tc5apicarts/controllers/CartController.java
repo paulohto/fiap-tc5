@@ -1,6 +1,8 @@
 package com.fiap.tc5apicarts.controllers;
 
+import com.fiap.tc5apicarts.dto.CartDTO;
 import com.fiap.tc5apicarts.dto.OrderDTO;
+import com.fiap.tc5apicarts.services.CartService;
 import com.fiap.tc5apicarts.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,11 @@ import java.util.UUID;
 @RequestMapping(value = "/carts")
 public class CartController {
     @Autowired
-    private OrderService orderService;
+    private CartService cartService;
 
-    @PostMapping
-    public ResponseEntity<OrderDTO> insert(@RequestBody OrderDTO dto) {
-        dto = orderService.insert(dto);
+    @PostMapping("/product/{uuid}")
+    public ResponseEntity<CartDTO> insert(@PathVariable UUID uuid) {
+        dto = cartService.insert(uuid);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}")
                 .buildAndExpand(dto.getId_order()).toUri();
         return ResponseEntity.created(uri).body(dto);

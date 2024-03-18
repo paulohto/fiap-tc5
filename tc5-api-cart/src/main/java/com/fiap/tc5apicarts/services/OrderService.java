@@ -1,11 +1,11 @@
 package com.fiap.tc5apicarts.services;
 
 
-import com.fiap.tc5apicarts.client.CartFeignClient;
+import com.fiap.tc5apicarts.client.ProductFeignClient;
 import com.fiap.tc5apicarts.dto.OrderDTO;
 import com.fiap.tc5apicarts.dto.ProductDTO;
 import com.fiap.tc5apicarts.entities.Order;
-import com.fiap.tc5apicarts.entities.OrderStatus;
+import com.fiap.tc5apicarts.entities.enums.OrderStatus;
 import com.fiap.tc5apicarts.exceptions.ResourceNotFoundException;
 import com.fiap.tc5apicarts.repositories.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,7 +25,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private CartFeignClient cartFeignClient;
+    private ProductFeignClient productFeignClient;
 
     @Transactional(readOnly = true)
     public List<OrderDTO> findAll() {
@@ -43,7 +43,7 @@ public class OrderService {
         Order order = new Order(null,
                 Instant.now(), OrderStatus.PENDING);
         for (ProductDTO p : dto.getProducts()){
-            ProductDTO product = cartFeignClient.findByUuid(p.getId_product()).getBody();
+            ProductDTO product = productFeignClient.findByUuid(p.getId_product()).getBody();
             order.getProducts().add(product);
         }
         order = orderRepository.save(order);
