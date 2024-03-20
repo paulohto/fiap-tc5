@@ -19,8 +19,8 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping("/product/{uuid}")
-    public ResponseEntity<CartDTO> insert(@PathVariable UUID uuid) {
-        return ResponseEntity.ok(cartService.insert(uuid));
+    @PostMapping("/product/{uuid}/{amount}")
+    public ResponseEntity<CartDTO> insert(@PathVariable UUID uuid, @PathVariable Integer amount) {
+        return ResponseEntity.ok(cartService.insert(uuid, amount));
     }
 }

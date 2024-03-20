@@ -22,15 +22,11 @@ public class CartService {
     private ProductFeignClient productFeignClient;
 
     @Transactional
-    public CartDTO insert(UUID uuid) {
+    public CartDTO insert(UUID uuid, Integer amount) {
         CartDTO cart = new CartDTO(Instant.now(), CartStatus.PENDING);
         ProductDTO product = productFeignClient.findByUuid(uuid);
-        //boolean result = cart.getProducts().add(product);
+        product.setAmount(amount);
         cart.getProducts().add(product);
-//        if(uuid.equals(product.getId_product())){
-//
-//        }
-        product.addAmount();
         cart.setTotal(product.getTotal());
         return cart;
     }

@@ -21,10 +21,6 @@ public class ProductDTO {
     private Integer amount_stock;
     private Integer amount = 1;
 
-    public void addAmount(){
-        amount = amount+1;
-    }
-
     public ProductDTO(Product entity) {
         id_product = entity.getId_product();
         name = entity.getName();
