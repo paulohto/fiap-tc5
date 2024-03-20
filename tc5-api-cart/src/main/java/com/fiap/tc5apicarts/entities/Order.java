@@ -1,12 +1,12 @@
 package com.fiap.tc5apicarts.entities;
 
-import com.fiap.tc5apicarts.dto.ProductDTO;
 import com.fiap.tc5apicarts.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.*;
 
@@ -15,18 +15,20 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_order")
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id_order;
 
-    private Long id_client;
-    private UUID uuid_product;
     private Instant moment;
     private OrderStatus status;
 
-    private Set<ProductDTO> products = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "tb_order_product",
+            joinColumns = @JoinColumn(name = "id_order"),
+            inverseJoinColumns = @JoinColumn(name = "id_product"))
+    private Set<Product> products = new HashSet<>();
 
 
     public Order(UUID id_order, Instant moment, OrderStatus status) {

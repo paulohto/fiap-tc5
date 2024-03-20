@@ -10,10 +10,10 @@ import java.util.UUID;
 
 @FeignClient(
         name = "api-product",
-        url = "${app-config.services.product}"
+        url = "http://localhost:8081"
 )
 public interface ProductFeignClient {
 
     @GetMapping("/stock/{uuid}")
-    ResponseEntity<ProductDTO> findByUuid(@PathVariable UUID uuid);
+    ProductDTO findByUuid(@PathVariable UUID uuid);
 }
