@@ -2,13 +2,19 @@ package com.fiap.tc5apiproducts.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
-import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtDTO {
 
     private Long id;
     private String login;
-    private String password;
 
     public static JwtDTO getUser(Claims jwtClaims) {
         try {

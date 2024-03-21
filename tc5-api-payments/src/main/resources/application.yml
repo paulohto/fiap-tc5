@@ -1,0 +1,16 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  application:
+    name: tc5-api-payment
+
+server:
+  port: ${SPRING_SERVER_PORT}
+
+app-config:
+  services:
+    cart: ${SPRING_URL_PRODUCT}
+  secrets:
+    api-secret: ${SPRING_JWT_SECRET:'YmF0bWFuIGJhdG1hbiBiYXRtYW4='}
