@@ -3,16 +3,17 @@ package com.fiap.tc5apiproducts.services;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
 import com.fiap.tc5apiproducts.dto.JwtDTO;
+import com.fiap.tc5apiproducts.exceptions.AuthenticationException;
 import com.fiap.tc5apiproducts.exceptions.ResourceNotFoundException;
-import com.fiap.tc5apiproducts.exceptions.ValidationException;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.lang.Strings;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import static com.auth0.jwt.JWT.require;
+import javax.crypto.SecretKey;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
@@ -21,48 +22,52 @@ public class JwtService {
     @Value("${app-config.secrets.api-secret}")
     private String jwtSecret;
 
-    private static final String BEARER = "Bearer";
+    private static final String EMPTY_SPACE = " ";
+    private static final Integer TOKEN_INDEX = 1;
 
-    public void validateAuthorization(String token){
+    public JwtDTO getAuthenticatedUser(String token) {
         try {
             var accessToken = extractToken(token);
-            var claims = Jwts
-                    .parser()
-                    .setSigningKey(Keys.hmacShaKeyFor(Algorithm.HMAC256(jwtSecret).getSigningKeyId().getBytes()))
-                    .build()
-                    .parseClaimsJws(accessToken)
-                    .getBody();
-            var user = JwtDTO.getUser(claims);
-            if (isEmpty(user) || isEmpty(user.getId())) {
-                throw new ResourceNotFoundException("The user is not valid.");
-            }
-
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new ResourceNotFoundException("Erro ao validar token!");
-        }
-    }
-    private String extractToken(String token){
-        if(isEmpty(token)){
-            throw new ValidationException("The access token was not informed.");
-        }
-        if (token.toLowerCase().contains(BEARER)){
-            token = token.toLowerCase();
-
-            return validateToken(token);
-        }
-        return token;
-    }
-    public String validateToken(String token){
-        try {
             Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
-            return require(algorithm)
+
+            var jwt =  JWT.require(algorithm)
                     .withIssuer("auth-api")
                     .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTVerificationException exception){
-            return "";
+                    .verify(accessToken)
+                    .getClaims();
+
+            var id = Long.valueOf(String.valueOf(jwt.get("id")));
+            var username = String.valueOf(jwt.get("username"));
+            return new JwtDTO(id, username);
+
+        } catch (Exception ex) {
+            throw new AuthenticationException("Invalid token: " + ex.getMessage());
         }
+    }
+    public void validateToken(String token){
+        try {
+            var tk = extractToken(token);
+            Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
+
+            var jwt =  JWT.require(algorithm)
+                    .withIssuer("auth-api")
+                    .build()
+                    .verify(tk)
+                    .getClaims();
+            if (isEmpty(jwt.get("user")) || isEmpty(jwt.get("id"))) {
+                throw new AuthenticationException("The user is not valid.");
+            }
+        } catch (JWTVerificationException exception){
+            throw new AuthenticationException("Error while trying to proccess the Access Token.");
+        }
+    }
+    private String extractToken(String token) {
+        if (isEmpty(token)) {
+            throw new ResourceNotFoundException("The access token was not informed.");
+        }
+        if (token.contains(EMPTY_SPACE)) {
+            return token.split(EMPTY_SPACE)[TOKEN_INDEX];
+        }
+        return token;
     }
 }

@@ -15,7 +15,6 @@ public class JwtDTO {
 
     private Long id;
     private String login;
-    private String password;
 
     public static JwtDTO getUser(Claims jwtClaims) {
         try {
