@@ -3,17 +3,12 @@ package com.fiap.tc5apiproducts.services;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
 import com.fiap.tc5apiproducts.dto.JwtDTO;
 import com.fiap.tc5apiproducts.exceptions.AuthenticationException;
 import com.fiap.tc5apiproducts.exceptions.ResourceNotFoundException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.SecretKey;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service

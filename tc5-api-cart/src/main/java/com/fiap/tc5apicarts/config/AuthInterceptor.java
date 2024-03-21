@@ -30,7 +30,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 //            throw new ValidationException("The transactionid header is required.");
 //        }
         var authorization = request.getHeader(AUTHORIZATION);
-        jwtService.validateAuthorization(authorization);
+        jwtService.validateToken(authorization);
         request.setAttribute("serviceid", UUID.randomUUID().toString());
         return true;
     }
