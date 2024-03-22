@@ -37,257 +37,219 @@ acompanha o projeto. Neste caso, entre na pasta raiz de cada Serviço e utilize 
 --------------------------------------------------------------------------------------------
 ### tc5-login-users
 
-| Método | Url          | Descrição               |
-|--------|--------------|-------------------------|
-| GET    | /torres/{id} | Get Torre Por ID        |
-| PUT    | /torres/{id} | Atualiza Torre Por ID   |
-| DELETE | /torres/{id} | Deleta Torre Por ID     |
-| GET    | /torres      | Get All Torres          |
-| POST   | /torres      | Cadastra uma nova Torre |
-
+| Método | Url               | Descrição                 |
+|--------|-------------------|---------------------------|
+| POST   | /auth/register    | Registra um novo usuario  |
+| POST   | /auth/login       | Faz o login de um usuario |
+| GET    | /user/all         | Busca todos os usuarios   |
+| PUT    | /user/update/{id} | Atualiza um usuario       |
+| DELETE | /user/delete/{id} | Apaga um usuario          |
 
 ### Exemplos de entrada
 
-##### <a>GET - /torres/{id}</a>
+##### <a>POST - /auth/register</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/torres/1'
-```
-
-##### <a>PUT - /torres/{id}</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location --request PUT 'localhost:3000/torres/1' \
---header 'Content-Type: application/json' \
---data '{
-    "nome":"Torre C"
+curl -X 'POST' \
+  'http://localhost:8080/auth/register' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "login": "teste-3",
+  "password": "senha123",
+  "role": "ADMIN"
 }'
 ```
-
-##### <a>DELETE - /torres/{id}</a>
+##### <a>POST - /auth/login</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location --request DELETE 'localhost:3000/torres/1'
-```
-
-##### <a>GET - /torres</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/torres'
-```
-
-##### <a>POST - /torres</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/torres' \
---header 'Content-Type: application/json' \
---data '{
-    "nome":"Torre B",
-    "localidadeId":1
+curl -X 'POST' \
+  'http://localhost:8080/auth/login' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "login": "teste-3",
+  "password": "senha123"
 }'
+```
+##### <a>GET - /users/all</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8080/users/all' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzE4Mjh9.yDxXasb18nTaGLGuM--nYoo0zejTOWXu5rGrx8l5ljE'
+```
+##### <a>PUT - /users/update/{id}</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location --request PUT 'http://localhost:8080/users/update/3' \
+--header 'Content-Type: application/javascript' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzI1NTV9.1iR0XSLbnZZEWDV_l202q_ltyXYg4dDmEMIGC1jg9Ig' \
+--data '{
+    "role": "USER"
+}'
+```
+##### <a>DELETE - /users/delete/{id}</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location --request DELETE 'http://localhost:8080/users/delete/4' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzI1NTV9.1iR0XSLbnZZEWDV_l202q_ltyXYg4dDmEMIGC1jg9Ig'
 ```
 --------------------------------------------------------------------------------------------
 ### tc5-api-products
 
-| Método | Url                           | Descrição                  |
-|--------|-------------------------------|----------------------------|
-| GET    | /reservas/{reservaId}         | Get Reserva Por ID         |
-| PUT    | /reservas/{reservaId}         | Atualiza Reserva Por ID    |
-| DELETE | /reservas/{reservaId}         | Deleta Reserva Por ID      |
-| POST   | /reservas                     | Cria nova Reserva          |
-| GET    | /reservas                     | Get All Reservas           |
-| GET    | /reservas/cliente/{clienteId} | Get Reserva Por Cliente ID |
-
+| Método | Url              | Descrição                            |
+|--------|------------------|--------------------------------------|
+| GET    | /products        | Busca todos os produto               |
+| GET    | /products/{uuid} | Busca produto por uuid               |
+| POST   | /products        | Cria um novo produto                 |
+| PUT    | /products/{uuid} | Atualiza um produto                  |
+| DELETE | /products/{uuid} | Apaga um produto                     |
+| GET    | /stock           | Busca todos os produtos no estoque   |
+| GET    | /stock/{uuid}    | Busca um produto no estoque          |
+| POST   | /stock/input     | Dar entrada de um produto no estoque |
+| POST   | /stock/output    | Faz a saida de um produto no estoque |
 
 ### Exemplos de entrada
 
-##### <a>GET - /reservas/{reservaId}</a>
+##### <a>GET - /products</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d'
+curl --location 'http://localhost:8081/products' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzYyNTF9.F1ko8-ng22rLUCwvObA-PckD3PmNzc6-w3X8MG0ctwc'
 ```
 
-##### <a>PUT - /reservas/{reservaId}</a>
+##### <a>GET - /products/{uuid}</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location --request PUT 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d' \
+curl --location 'http://localhost:8081/products/a26862f4-4ed9-4768-b2ac-7411942bd96a' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzYyNTF9.F1ko8-ng22rLUCwvObA-PckD3PmNzc6-w3X8MG0ctwc'
+```
+
+##### <a>POST - /products</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8081/products' \
 --header 'Content-Type: application/json' \
---data-raw '{
-    "clienteEmail": "elinore.Wehner@example.com",
-    "quartos": [
-        1
-    ],
-    "dataCheckIn": "2024-04-23",
-    "dataCheckOut": "2024-04-24",
-    "adicionalList": {
-        "café": 5,
-        "refrigerante": 2
-    }
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzYyNTF9.F1ko8-ng22rLUCwvObA-PckD3PmNzc6-w3X8MG0ctwc' \
+--data '{
+    "name": "Agua 1L",
+    "price": 2.0,
+    "description": "Agua mineral fonte São Sebastião de 1 litros.",
+    "imageUri": "https://github.com/devsuperior/sds2/blob/master/assets/pizza_moda.jpg"
 }'
 ```
-
-##### <a>DELETE - /reservas/{reservaId}</a>
+##### <a>PUT - /produts/{uuid}</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location --request DELETE 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d'
-```
-
-##### <a>POST - /reservas</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/reservas/novo' \
+curl --location --request PUT 'http://localhost:8081/products/9e89dfd9-8698-4337-b0db-98c05a36006c' \
 --header 'Content-Type: application/json' \
---data-raw '{
-  "clienteEmail": "Elinore.Wehner@example.com",
-  "quartos": [
-    1
-  ],
-  "dataCheckIn": "2024-04-23",
-  "dataCheckOut": "2024-04-24",
-  "adicionalList": {
-    "café": 1,
-    "refrigerante": 2
-  }
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY0NzF9.KnlS3rh6IXGOwqv6bqUwzDsJytuE3Kfzrf2Ud5X4IeY' \
+--data '{
+    "name": "Agua 1L",
+    "price": 3.0,
+    "description": "Agua mineral fonte São Sebastião de 1 litros.",
+    "imageUri": "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/macarrao_espaguete.jpg"
 }'
 ```
-
-##### <a>GET - /reservas</a> 
+##### <a>DELETE - /products{uuid}</a> 
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/reservas'
+curl --location --request DELETE 'http://localhost:8081/products/672fd827-2ec8-45ba-a097-a54a653d9d13' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY0NzF9.KnlS3rh6IXGOwqv6bqUwzDsJytuE3Kfzrf2Ud5X4IeY'
 ```
-
-##### <a>GET - /reservas/cliente/{clienteId}</a>
+##### <a>GET - /stock</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/reservas/cliente/2'
+curl --location 'http://localhost:8081/stock' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY2Mzh9.HbRelwLPVPTTar2E7Yt3yNRHPHweAdCDM72_WJd945w'
+```
+##### <a>GET - /stock/{uuid}</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8081/stock/c383ea7e-89f3-45c9-bab9-5b59d9c2d684' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY2Mzh9.HbRelwLPVPTTar2E7Yt3yNRHPHweAdCDM72_WJd945w'
+```
+##### <a>POST - /stock/input</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8081/stock/input' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY2Mzh9.HbRelwLPVPTTar2E7Yt3yNRHPHweAdCDM72_WJd945w' \
+--data '{
+    "id_product": "c383ea7e-89f3-45c9-bab9-5b59d9c2d684",
+    "amount_stock": 10
+}'
+```
+##### <a>POST - /stock/output</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8081/stock/output' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzY2Mzh9.HbRelwLPVPTTar2E7Yt3yNRHPHweAdCDM72_WJd945w' \
+--data '{
+    "id_product": "c383ea7e-89f3-45c9-bab9-5b59d9c2d684",
+    "amount_stock": 2
+}'
 ```
 --------------------------------------------------------------------------------------------
 ### tc5-api-carts
 
-| Método | Url                 | Descrição                                              |
-|--------|---------------------|--------------------------------------------------------|
-| GET    | /quartos/{quartoId} | Get Quarto Por ID                                      |
-| PUT    | /quartos/{quartoId} | Atualiza Qaurto Por ID                                 |
-| DELETE | /quartos/{quartoId} | Deleta Quarto Por ID                                   |
-| POST   | /quartos/novo       | Cria Novo Quarto                                       |
-| GET    | /quartos            | Get All Quartos                                        |
-| GET    | /quartos/tipoquarto | Categorias de Quarto Disponiveis ex: "Luxo","Standard" |
-| GET    | /quartos/busca      | Get Quarto Por Categoria ex: "Luxo","Standard"         |
-| GET    | /quartos/amenidades | Get Amenidades disponiveis ex: "TV","Poltrona"         |
+| Método | Url             | Descrição                                                 |
+|--------|-----------------|-----------------------------------------------------------|
+| GET    | /orders         | Busca todos os pedidos pendentes                          |
+| GET    | /orders/{uuid}  | Busca um pedido por uuid                                  |
+| POST   | /orders         | Criar um pedido                                           |
+| POST   | /cart/product/1 | Adiciona um produto e a quantidade ao carrinho de compras |
 
 ### Exemplos de entrada
 
-##### <a>GET - /quartos/{quartoId}</a>
+##### <a>GET - /orders</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/quartos/1'
+curl --location 'http://localhost:8082/orders' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzcyMTR9.KlberqDZIq76ZOx56vG2OJkmd8WBrnr4Jr2pzhaEWps'
 ```
-
-
-##### <a>PUT - /quartos/{quartoId}</a>
+##### <a>GET - /orders/{uuid}</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location --request PUT 'localhost:3000/quartos/1' \
+curl --location 'http://localhost:8082/orders/9c6a57b7-4915-4fb9-8a33-161f9c6c04a4' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzcyMTR9.KlberqDZIq76ZOx56vG2OJkmd8WBrnr4Jr2pzhaEWps'
+```
+##### <a>POST - /orders</a>
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
+```bash
+curl --location 'http://localhost:8082/orders' \
 --header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlLTMiLCJpZCI6MywidXNlciI6InRlc3RlLTMiLCJleHAiOjE3MTExMzcyMTR9.KlberqDZIq76ZOx56vG2OJkmd8WBrnr4Jr2pzhaEWps' \
 --data '{
-    "tipoQuarto": "LUXO",
-    "amenidades": [
-        "AR_CONDICIONADO",
-        "FRIGOBAR",
-        "BANHEIRA",
-        "VARANDA"
-    ]
+   "products":[
+      {
+         "id_product":"d345c67d-2374-4daf-94cc-d8b4dacfd300"
+      },
+      {
+         "id_product":"f629d5a3-b0f8-418a-9aca-0c007b7e7ea4"
+      }
+   ]
 }'
 ```
-##### <a>DELETE - /quartos/{quartoId}</a>
+##### <a>POST - /carts/product/{uuid}/1</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location --request DELETE 'localhost:3000/quartos/1'
-```
-##### <a>POST - /quartos/novo</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/quartos/novo' \
---header 'Content-Type: application/json' \
---data '{
-  "tipoQuarto": "LUXO",
-  "amenidades": [
-    "TV",
-    "AR_CONDICIONADO",
-    "FRIGOBAR",
-    "BANHEIRA",
-    "MESA_ESCRITORIO",
-    "VARANDA"
-  ]
-}'
-```
-##### <a>GET - /quartos</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/quartos'
-```
-##### <a>GET - /quartos/tipoquarto</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/quartos/tipoquarto'
-```
-##### <a>GET - /quartos/busca</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/quartos/busca?tipoQuarto=LUXO'
-```
-##### <a>GET - /quartos/amenidades</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/quartos/amenidades'
+curl --location --request POST 'http://localhost:8082/carts/product/f629d5a3-b0f8-418a-9aca-0c007b7e7ea4/5' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6IlRlc3RlLTIiLCJpZCI6MiwidXNlciI6IlRlc3RlLTIiLCJleHAiOjE3MTEwNTE5MjV9.D9RcCVnYsJ771SKagBhYypARMnQhRFzd1MEIqrIikFI'
 ```
 --------------------------------------------------------------------------------------------
 ### tc5-payments
 
-| Método | Url               | Descrição                  |
-|--------|-------------------|----------------------------|
-| GET    | /localidades/{id} | Get Localidade Por ID      |
-| PUT    | /localidades/{id} | Atualiza Localidade Por ID |
-| DELETE | /localidades/{id} | Deleta Localidade Por ID   |
-| GET    | /localidades      | Get All Localidades        |
-| POST   | /localidades      | Cria Localidade            |
+| Método | Url                   | Descrição                        |
+|--------|-----------------------|----------------------------------|
+| PUT    | /payments/{uuid}/paid | Efetuar o pagamento de um pedido |
 
 ### Exemplos de entrada
 
-##### <a>GET - /localidades/{id}</a>
+##### <a>PUT - /payments/{uuid}/paid</a>
 ![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
-curl --location 'localhost:3000/localidades/1'
-```
-##### <a>PUT - /localidades/{id}</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location --request PUT 'localhost:3000/localidades/1' \
---header 'Content-Type: application/json' \
---data '{
-    "id":1,
-    "nome":"Ibis Interlagos",
-    "endereco":"Av. Interlagos, 5111"
-}'
-```
-##### <a>DELETE - /localidades/{id}</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location --request DELETE 'localhost:3000/localidades/1'
-```
-##### <a>GET - /localidades</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/localidades'
-```
-##### <a>POST - /localidades</a>
-![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
-```bash
-curl --location 'localhost:3000/localidades' \
---header 'Content-Type: application/json' \
---data '{
-    "nome":"Ibis Interlagos",
-    "endereco":"Av. Interlagos, 5847"
-}'
+curl --location --request PUT 'http://localhost:8083/payments/3dd58300-a79a-4e07-8a81-33db015d1762/paid' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6IlRlc3RlLTIiLCJpZCI6MiwidXNlciI6IlRlc3RlLTIiLCJleHAiOjE3MTEwNTE5MjV9.D9RcCVnYsJ771SKagBhYypARMnQhRFzd1MEIqrIikFI'
 ```
