@@ -33,19 +33,13 @@ public class SecurityConfigurations {
                             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                             .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                             .requestMatchers(HttpMethod.POST,"/auth/logout").permitAll()
+                                .requestMatchers("/v3/**", "/swagger-ui/**").permitAll()
 
                                 .requestMatchers("/users/**").hasRole("ADMIN")
                                 .requestMatchers("/complement/**").hasRole("ADMIN")
-                                //.requestMatchers(HttpMethod.POST,"/products/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 
                         )
-                
-                //.httpBasic(Customizer.withDefaults()) //Formato para API
-                //.formLogin(Customizer.withDefaults()) //Form Standard do Spring Security
-                //.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // Para trabalhar com JWT
-                //.oauth2Login(Customizer.withDefaults()) //Formato para logar com autenticador OAUTH2 google
-                //.oauth2ResourceServer(config -> { config.jwt(Customizer.withDefaults()); }) //Formato para caputar JWT do OAUTH2
                 .addFilterBefore(securityFilter,UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

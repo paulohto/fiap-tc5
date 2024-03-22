@@ -4,7 +4,7 @@ API desenvolvida para gestão de login e usuarios.
 
 ## Workflow
 
-![modelo-realcional](src/main/resources/modelo-relacional.png)
+![modelo-realcional](modelo-relacional.png)
 
 ## Como rodar esta aplicação springboot
 
@@ -33,7 +33,7 @@ Grupo 21
 
 ## Repositório
 
-- [tc5-api-products](https://github.com/paulohto/login-users-tc5)
+- [login-users-tc5](https://github.com/paulohto/login-users-tc5)
 
 ## Commits Guideline
 
