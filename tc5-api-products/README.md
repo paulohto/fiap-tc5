@@ -26,7 +26,7 @@ SPRING_JWT_SECRET=YmF0bWFuIGJhdG1hbiBiYXRtYW4=
 ```
 
 > **_NOTA:_**  Ao rodar a aplicação, para acessar o swagger da api basta acessar a seguinte url a depender da porta escolhida
-> na variável SERVER_PORT. Ex: http://localhost:8080/swagger-ui/index.html#/
+> na variável SERVER_PORT. Ex: http://localhost:8081/swagger-ui/index.html#/
 
 ## Squad
 Grupo 21
