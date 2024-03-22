@@ -20,10 +20,10 @@ Bem-vindo(a) a documentação oficial desenvolvida para este Tech Challenge.
 - GitHub
 - Docker
 
-## Como inicar o projeto
+## Como rodar o projeto
 
-Para inicar o projeto, utilize o `maven`. Caso não tenha o Maven instalado, você pode utilizar o wrapper que
-acompanha o projeto. Neste caso, entre na pasta raiz de cada Serviço e utilize o comando `./mvnw`.
+Para rodar todo o projeto, utilize o `maven`. Caso não tenha o Maven instalado, pode utilizar o wrapper que
+acompanha o projeto. Neste caso, entre na pasta raiz de cada serviço e utilize o comando `./mvnw`.
 É necessário estar com `Docker` rodando para conexão com banco de dados.
 
 | Comando                  | Descrição                       | Requisitos                  |
