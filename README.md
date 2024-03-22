@@ -1,10 +1,10 @@
 # Tech Challenge 
 
-Bem-vindo(a) a documentação oficial da API desenvolvida para este Tc.
+Bem-vindo(a) a documentação oficial desenvolvida para este Tech Challenge.
 
 ## Link do Repositório
 
-- [Tech Challenge](https://github.com/danguimaraes86/fiap-hackaton-fiaptrips)
+- [Tech Challenge](https://github.com/JoneyPereira/fiap-tc5)
 
 ## Tecnologias e Ferramentas
 - Java 17 e 21
@@ -35,7 +35,7 @@ acompanha o projeto. Neste caso, entre na pasta raiz de cada Serviço e utilize 
 ![arquitetura](arquitetura.png)
 
 --------------------------------------------------------------------------------------------
-### Torre
+### tc5-login-users
 
 | Método | Url          | Descrição               |
 |--------|--------------|-------------------------|
@@ -55,7 +55,7 @@ curl --location 'localhost:3000/torres/1'
 ```
 
 ##### <a>PUT - /torres/{id}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request PUT 'localhost:3000/torres/1' \
 --header 'Content-Type: application/json' \
@@ -65,19 +65,19 @@ curl --location --request PUT 'localhost:3000/torres/1' \
 ```
 
 ##### <a>DELETE - /torres/{id}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request DELETE 'localhost:3000/torres/1'
 ```
 
 ##### <a>GET - /torres</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/torres'
 ```
 
 ##### <a>POST - /torres</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/torres' \
 --header 'Content-Type: application/json' \
@@ -87,7 +87,7 @@ curl --location 'localhost:3000/torres' \
 }'
 ```
 --------------------------------------------------------------------------------------------
-### Reservas
+### tc5-api-products
 
 | Método | Url                           | Descrição                  |
 |--------|-------------------------------|----------------------------|
@@ -102,13 +102,13 @@ curl --location 'localhost:3000/torres' \
 ### Exemplos de entrada
 
 ##### <a>GET - /reservas/{reservaId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d'
 ```
 
 ##### <a>PUT - /reservas/{reservaId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request PUT 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d' \
 --header 'Content-Type: application/json' \
@@ -127,13 +127,13 @@ curl --location --request PUT 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b
 ```
 
 ##### <a>DELETE - /reservas/{reservaId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request DELETE 'localhost:3000/reservas/970d66b4-16f1-46c0-8c79-b42ebd3a644d'
 ```
 
 ##### <a>POST - /reservas</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/reservas/novo' \
 --header 'Content-Type: application/json' \
@@ -152,18 +152,18 @@ curl --location 'localhost:3000/reservas/novo' \
 ```
 
 ##### <a>GET - /reservas</a> 
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/reservas'
 ```
 
 ##### <a>GET - /reservas/cliente/{clienteId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/reservas/cliente/2'
 ```
 --------------------------------------------------------------------------------------------
-### Quartos
+### tc5-api-carts
 
 | Método | Url                 | Descrição                                              |
 |--------|---------------------|--------------------------------------------------------|
@@ -179,14 +179,14 @@ curl --location 'localhost:3000/reservas/cliente/2'
 ### Exemplos de entrada
 
 ##### <a>GET - /quartos/{quartoId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos/1'
 ```
 
 
 ##### <a>PUT - /quartos/{quartoId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request PUT 'localhost:3000/quartos/1' \
 --header 'Content-Type: application/json' \
@@ -201,12 +201,12 @@ curl --location --request PUT 'localhost:3000/quartos/1' \
 }'
 ```
 ##### <a>DELETE - /quartos/{quartoId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request DELETE 'localhost:3000/quartos/1'
 ```
 ##### <a>POST - /quartos/novo</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos/novo' \
 --header 'Content-Type: application/json' \
@@ -223,27 +223,27 @@ curl --location 'localhost:3000/quartos/novo' \
 }'
 ```
 ##### <a>GET - /quartos</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos'
 ```
 ##### <a>GET - /quartos/tipoquarto</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos/tipoquarto'
 ```
 ##### <a>GET - /quartos/busca</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos/busca?tipoQuarto=LUXO'
 ```
 ##### <a>GET - /quartos/amenidades</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/quartos/amenidades'
 ```
 --------------------------------------------------------------------------------------------
-### Localidades
+### tc5-payments
 
 | Método | Url               | Descrição                  |
 |--------|-------------------|----------------------------|
@@ -256,12 +256,12 @@ curl --location 'localhost:3000/quartos/amenidades'
 ### Exemplos de entrada
 
 ##### <a>GET - /localidades/{id}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/localidades/1'
 ```
 ##### <a>PUT - /localidades/{id}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request PUT 'localhost:3000/localidades/1' \
 --header 'Content-Type: application/json' \
@@ -272,17 +272,17 @@ curl --location --request PUT 'localhost:3000/localidades/1' \
 }'
 ```
 ##### <a>DELETE - /localidades/{id}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location --request DELETE 'localhost:3000/localidades/1'
 ```
 ##### <a>GET - /localidades</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/localidades'
 ```
 ##### <a>POST - /localidades</a>
-![Uses Curl](images/Curl-Uses-green.svg)
+![Uses Curl](https://img.shields.io/badge/Curl-Uses-green)
 ```bash
 curl --location 'localhost:3000/localidades' \
 --header 'Content-Type: application/json' \
@@ -291,119 +291,3 @@ curl --location 'localhost:3000/localidades' \
     "endereco":"Av. Interlagos, 5847"
 }'
 ```
---------------------------------------------------------------------------------------------
-### Clientes
-
-| Método | Url                   | Descrição               |
-|--------|-----------------------|-------------------------|
-| PUT    | /clientes/{clienteId} | Atualiza Cliente Por ID |
-| DELETE | /clientes/{clienteId} | Deleta Cliente Por ID   |
-| POST   | /clientes/novo        | Cria Cliente            |
-| GET    | /clientes             | Get All Clientes        |
-| GET    | /clientes/busca       | Get Por EMAIL           |
-
-### Exemplos de entrada
-
-##### <a>PUT - /clientes/{clienteId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location --request PUT 'localhost:3000/clientes/1' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "nomeComleto": "Carroll Gottlieb",
-    "paisOrigem": "pt_br",
-    
-    "dataNascimento": "2000-01-01",
-    "cpf": "88866699945",
-    "passaporte": "XXX-8765",
-    "telefone": "55-61-9999-8888",
-    "email": "Alejandrin39@example.com",
-    "endereco": "224 Koelpin Ports"
-}'
-```
-##### <a>DELETE - /clientes/{clienteId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location --request DELETE 'localhost:3000/clientes/1'
-```
-##### <a>POST - /clientes/novo</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/clientes/novo' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "nomeComleto": "Mr. Brandy Durgan",
-  "paisOrigem": "pt_br",
-  
-  "dataNascimento": "2000-01-01",
-  "cpf": "11122233344",
-  "passaporte": "XXX-8765",
-  "telefone": "55-61-9999-8888",
-  "email": "Gail.Ziemann@example.com",
-  "endereco": "182 Kohler Drive"
-}'
-```
-##### <a>GET - /clientes</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/clientes'
-```
-##### <a>GET - /clientes/busca</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/clientes/busca?email=Bulah_Reichel41%40example.com'
-```
---------------------------------------------------------------------------------------------
-### Adicionais
-
-| Método | Url                       | Descrição                  |
-|--------|---------------------------|----------------------------|
-| PUT    | /adicionais/{adicionalId} | Edita Adicional Por ID     |
-| DELETE | /adicionais/{adicionalId} | Delete Adicional por ID    |
-| POST   | /adicionais/novo          | Cria novo Adicional        |
-| GET    | /adicionais               | Get All Adicionais         |
-| GET    | /adicionais/busca         | Get Adiconal Por Descrição |
-
-
-### Exemplos de entrada
-
-##### <a>PUT - /adicionais/{adicionalId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location --request PUT 'localhost:3000/adicionais/1' \
---header 'Content-Type: application/json' \
---data '{
-    "descricao": "massagem",
-    "valor": 10.0,
-    "tipoAdicional": "servico"
-}'
-```
-
-##### <a>DELETE - /adicionais/{adicionalId}</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location --request DELETE 'localhost:3000/adicionais/1'
-```
-
-##### <a id="updateEndereco">POST - /adicionais/novo</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/adicionais/novo' \
---header 'Content-Type: application/json' \
---data '{
-  "descricao": "massagem",
-  "valor": 5.0,
-  "tipoAdicional": "servico"
-}'
-```
-
-##### <a>GET - /adicionais</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/adicionais'
-```
-
-##### <a>GET - /adicionais/busca</a>
-![Uses Curl](images/Curl-Uses-green.svg)
-```bash
-curl --location 'localhost:3000/adicionais/busca?descricao=massagem'```
