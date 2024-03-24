@@ -5,8 +5,8 @@ Bem-vindo(a) a documentação oficial desenvolvida para este Tech Challenge.
 <p>
 Objetivo: Simular os principais microsserviços de um e-commerce. A interação e consumo entre eles. E controle de acesso através de autenticação e autorização tokenizado. 
 </p>
-## Link do Repositório
 
+## Link do Repositório
 - [Tech Challenge](https://github.com/JoneyPereira/fiap-tc5)
 
 ## Tecnologias e Ferramentas
